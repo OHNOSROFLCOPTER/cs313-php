@@ -8,7 +8,7 @@
  * php page. This includes the nav bar that will be at the
  * top.
  */
-require_once '../vendor/autoload.php';
+require_once '/vendor/autoload.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
