@@ -1,0 +1,33 @@
+body {
+    background-color: #66CDAA;
+}
+
+.img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-container img {
+    height: 240px;
+}
+
+.jumbotron {
+    background-color: #E0FFFF;
+}
+
+.nav li:hover {
+    background-color: #FF4500;
+}
+
+h1 {
+    color: #FF4500;
+}
+
+.content_header {
+    text-align: center;
+}
+
+p {
+    font-size: 1.5em;
+}
