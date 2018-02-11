@@ -43,7 +43,7 @@ require_once 'vendor/autoload.php';
         <ul class="nav navbar-nav"> 
             <li><a href="index.php">About Me</a></li> 
             <li><a href="assignments.php">Assignments</a></li>
-            <li><a href="http://github.com/ohnosroflcopter">My Github</a></li>
+            <li><a href="http://github.com/lights-a5">My Github</a></li>
         </ul>
     </div>
 </nav>

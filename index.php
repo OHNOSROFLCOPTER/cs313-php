@@ -13,7 +13,7 @@
     <div class='col-sm-4'> 
         <h1 class='content_header'>Hobbies</h1> 
         <p>I have quite a few hobbies that I really enjoy and they are quite varied. I enjoy playing all sorts of games. However, I'm actually
-            semi-competitive in <a href='magicthegathering.com'>Magic: the Gathering!</a> I find it a lot of fun and I 
+            semi-competitive in <a href='https://magicthegathering.com'>Magic: the Gathering!</a> I find it a lot of fun and I 
             participate in weekly tournaments here in Rexburg. I've had a blast meeting all
             sorts of new people playing this hobby and I plan on playing it in the forseeable future.
 
@@ -32,7 +32,7 @@
             has a lot of features that I throughly enjoy using it. Who knew that text editors could be so powerful?
             I also do all of my projects on a computer running an Operating System called Manjaro. Manjaro is based
             off Arch Linux, but it's much easier to install. If you are interested in running Linux, I heartily
-            recommend <a href='manjaro.org'>Manjaro</a> as it's both lightweight and incredibily useful.</p> 
+            recommend <a href='https://manjaro.org'>Manjaro</a> as it's both lightweight and incredibily useful.</p> 
     </div>
 
 </body>
