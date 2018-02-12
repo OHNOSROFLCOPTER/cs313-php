@@ -5,7 +5,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $input_username = $_POST['username'];
     $input_password = $_POST['password'];
     $dbUrl = getenv('DATABASE_URL');
-    $dbopts = parse_urll($dbUrl);
+    $dbopts = parse_url($dbUrl);
 
     $dbHost = $dbopts['host'];
     $dbPort = $dbopts['port'];
