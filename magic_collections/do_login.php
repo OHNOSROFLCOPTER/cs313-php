@@ -10,7 +10,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $dbHost = $dbopts['host'];
     $dbPort = $dbopts['port'];
     $dbUser = $dbopts['user'];
-    $dbPassword = $dbopts['pasas'];
+    $dbPassword = $dbopts['pass'];
     $dbName = ltrim($dbopts['path'],'/');
     $dbconn = pg_connect("host=$dbHost port=$dbPort dbname=$dbName user=$dbUser password=$dbPassword");
     $result = pg_prepare($dbconn, "check_creds", "SELECT * FROM users WHERE username = $1");

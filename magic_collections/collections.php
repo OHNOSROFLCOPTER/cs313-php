@@ -11,7 +11,7 @@
     $dbHost = $dbopts['host'];
     $dbPort = $dbopts['port'];
     $dbUser = $dbopts['user'];
-    $dbPassword = $dbopts['pasas'];
+    $dbPassword = $dbopts['pass'];
     $dbName = ltrim($dbopts['path'],'/');
     $dbconn = pg_connect("host=$dbHost port=$dbPort dbname=$dbName user=$dbUser password=$dbPassword");
 ?>
