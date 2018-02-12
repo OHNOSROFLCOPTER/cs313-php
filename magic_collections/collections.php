@@ -5,7 +5,15 @@
         header('Location: index.php');
         die();
     }
-    $dbconn = pg_connect("host=localhost dbname=magic_db user=wwillden password=''");
+    $dbUrl = getenv('DATABASE_URL');
+    $dbopts = parse_urll($dbUrl);
+
+    $dbHost = $dbopts['host'];
+    $dbPort = $dbopts['port'];
+    $dbUser = $dbopts['user'];
+    $dbPassword = $dbopts['pasas'];
+    $dbName = ltrim($dbopts['path'],'/');
+    $dbconn = pg_connect("host=$dbHost port=$dbPort dbname=$dbName user=$dbUser password=$dbPassword");
 ?>
 <!DOCTYPE html>
 <html lang="en">

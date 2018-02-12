@@ -4,7 +4,15 @@ session_start();
 if (isset($_POST['username']) && isset($_POST['password'])) {
     $input_username = $_POST['username'];
     $input_password = $_POST['password'];
-    $dbconn = pg_connect("host=localhost dbname=magic_db user=wwillden password=''");
+    $dbUrl = getenv('DATABASE_URL');
+    $dbopts = parse_urll($dbUrl);
+
+    $dbHost = $dbopts['host'];
+    $dbPort = $dbopts['port'];
+    $dbUser = $dbopts['user'];
+    $dbPassword = $dbopts['pasas'];
+    $dbName = ltrim($dbopts['path'],'/');
+    $dbconn = pg_connect("host=$dbHost port=$dbPort dbname=$dbName user=$dbUser password=$dbPassword");
     $result = pg_prepare($dbconn, "check_creds", "SELECT * FROM users WHERE username = $1");
     $result = pg_execute($dbconn, "check_creds", [$input_username]);
     $line = pg_fetch_assoc($result);
