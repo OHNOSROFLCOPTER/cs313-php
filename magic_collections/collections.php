@@ -5,15 +5,8 @@
         header('Location: index.php');
         die();
     }
-    $dbUrl = getenv('DATABASE_URL');
-    $dbopts = parse_url($dbUrl);
-
-    $dbHost = $dbopts['host'];
-    $dbPort = $dbopts['port'];
-    $dbUser = $dbopts['user'];
-    $dbPassword = $dbopts['pass'];
-    $dbName = ltrim($dbopts['path'],'/');
-    $dbconn = pg_connect("host=$dbHost port=$dbPort dbname=$dbName user=$dbUser password=$dbPassword");
+    include_once 'database_connect.php';
+    $dbconn = get_database_connection();
 ?>
 <!DOCTYPE html>
 <html lang="en">

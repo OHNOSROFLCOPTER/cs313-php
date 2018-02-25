@@ -1,18 +1,12 @@
 <?php
-
 session_start();
+
 if (isset($_POST['username']) && isset($_POST['password'])) {
+     //Used to simply grab the database
+    include_once 'database_connect.php';
     $input_username = $_POST['username'];
     $input_password = $_POST['password'];
-    $dbUrl = getenv('DATABASE_URL');
-    $dbopts = parse_url($dbUrl);
-
-    $dbHost = $dbopts['host'];
-    $dbPort = $dbopts['port'];
-    $dbUser = $dbopts['user'];
-    $dbPassword = $dbopts['pass'];
-    $dbName = ltrim($dbopts['path'],'/');
-    $dbconn = pg_connect("host=$dbHost port=$dbPort dbname=$dbName user=$dbUser password=$dbPassword");
+    $dbconn = get_database_connection();
     $result = pg_prepare($dbconn, "check_creds", "SELECT * FROM users WHERE username = $1");
     $result = pg_execute($dbconn, "check_creds", [$input_username]);
     $line = pg_fetch_assoc($result);
