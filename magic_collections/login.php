@@ -14,7 +14,15 @@
         <form action="do_login.php" method='POST'>
             <?php 
                 if (isset($_SESSION['error'])) {
-                    echo "Wrong username or password";
+                    if($_SESSION['error'] == 'login') {
+                        echo "Wrong username or password";
+                    }
+                    else if($_SESSION['error'] == 'creation') {
+                        echo "That username has been taken";
+                    }
+                    else {
+                        echo "Unexpected Error. Try Again.";
+                    }
                     unset($_SESSION['error']);
                 }
              ?>
@@ -23,5 +31,18 @@
             <input type="submit" value='Log in'>
         </form>
     </div>
+    <div class='white_box'>
+        Sign Up!
+        <?php
+            if (isset($_SESSION['created_user'])) {
+                echo "<br>User successfully created!";
+                unset($_SESSION['created_user']);
+            }
+        ?>
+        <form action="create_account.php" method='POST'>
+            <div class='input_name'>Username:</div><input type="text" name="username"><br><br>
+            <div class='input_name'>Password:</div><input type="password" name="password"><br><br>
+            <input type="submit" value='Create Account!'>
+        </form>
 </body>
 </html>

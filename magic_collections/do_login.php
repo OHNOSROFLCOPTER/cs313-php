@@ -11,20 +11,19 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $result = pg_execute($dbconn, "check_creds", [$input_username]);
     $line = pg_fetch_assoc($result);
 //uncomment this when we can insert       if (password_verify($input_password, $result['password'])) {
-    if ($input_password == $line['password']) {
-        unset($_SESSION['error']);
+    if (password_verify($input_password, $line['password'])) {
         $_SESSION['username'] = $line['username'];
         $_SESSION['display_name'] = $line['display_name'];
         $_SESSION['id'] = $line['id'];          
     }
 
     else {
-        $_SESSION['error'] = True;
+        $_SESSION['error'] = 'login';
     }
 }
 
 else {
-    $_SESSION['error'] = True;
+    $_SESSION['error'] = 'login';
 }
 
 header('Location: index.php');
