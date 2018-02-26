@@ -10,7 +10,6 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $result = pg_prepare($dbconn, "check_creds", "SELECT * FROM users WHERE username = $1");
     $result = pg_execute($dbconn, "check_creds", [$input_username]);
     $line = pg_fetch_assoc($result);
-//uncomment this when we can insert       if (password_verify($input_password, $result['password'])) {
     if (password_verify($input_password, $line['password'])) {
         $_SESSION['username'] = $line['username'];
         $_SESSION['display_name'] = $line['display_name'];
