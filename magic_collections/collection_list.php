@@ -13,3 +13,7 @@
     }
 ?>
 </ul>
+<form action='add_collection.php' method='POST'>
+    <input type='text' name='collection_name' value='New Collection Name'>
+    <input type='submit' value='Add New Collection'>
+</form>
