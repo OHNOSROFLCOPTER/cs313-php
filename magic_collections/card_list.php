@@ -3,6 +3,7 @@ session_start();
 if (isset($_SESSION['insert_success'])) {
     if($_SESSION['insert_success']) echo "Cards Added";
     else echo "Add failed. Is the card's name correct?";
+    unset($_SESSION['insert_success']);
 }
 ?>
 <table style="width: 30%">
@@ -11,22 +12,24 @@ if ( basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) ) {
     http_response_code(404);
     die();
 }
-        $result = pg_prepare($dbconn, "get_card_list", 
-        "SELECT collections.collection_name, magic_cards.card_name, quantity.quantity, quantity.id
-        FROM collections INNER JOIN quantity ON (collections.id = quantity.collection_id)
-        INNER JOIN magic_cards ON (quantity.card_id = magic_cards.card_id)
-        WHERE collections.id = $1;");
-        $result = pg_execute($dbconn, "get_card_list", [$_GET['collection']]);
-        while ($line = pg_fetch_assoc($result)) {
-            $card_name = $line['card_name'];
-            $quantity = $line['quantity'];
-            $quantity_id = $line['id'];
-            echo "<tr><td>$card_name</td>
-        <td>$quantity</td>
-        <td><form action='delete_card_row.php'>
-        <input type='hidden' name='quantity_id' value=$quantity_id>
-        <input type='submit' value='Delete Cards'></form></td></tr>";
-        }
+    $collection_id = $_GET['collection'];
+    $result = pg_prepare($dbconn, "get_card_list", 
+    "SELECT collections.collection_name, magic_cards.card_name, quantity.quantity, quantity.id
+    FROM collections INNER JOIN quantity ON (collections.id = quantity.collection_id)
+    INNER JOIN magic_cards ON (quantity.card_id = magic_cards.card_id)
+    WHERE collections.id = $1;");
+    $result = pg_execute($dbconn, "get_card_list", [$_GET['collection']]);
+    while ($line = pg_fetch_assoc($result)) {
+        $card_name = $line['card_name'];
+        $quantity = $line['quantity'];
+        $quantity_id = $line['id'];
+        echo "<tr><td>$card_name</td>
+    <td>$quantity</td>
+    <td><form action='delete_card_row.php'>
+    <input type='hidden' name='quantity_id' value=$quantity_id>
+    <input type='hidden' name='collection_id' value=$collection_id>
+    <input type='submit' value='Delete Cards'></form></td></tr>";
+    }
 ?>
 <tr>
     <form action='add_cards.php'>
@@ -38,6 +41,7 @@ if ( basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]) ) {
     </form>
 </tr>
 </table>
+<a href='collections.php'>Go Back to Collections</a>
 <script>
 //script is for autocompletion for adding cards field
 var dataList = document.getElementById('json-datalist');
